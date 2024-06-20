@@ -1,24 +1,33 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "@/assets/images/logo.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
- const itemList=[
-"Today's Deals",
-"New Arrivals",
-"Best Sellers",
-"Discounts",
-"Categories",
-"About Us",
-"Contact Us",
- ]
+  const itemList = [
+    "Today's Deals",
+    "New Arrivals",
+    "Best Sellers",
+    "Discounts",
+    "Categories",
+  ];
+
+  const [query, setQuery] = useState<string>("");
+  const router = useRouter();
+
+  const handleSearch = () => {
+    router.push(`/search/${query}`);
+  };
   return (
     <header className="bg-white">
       <div className="container mx-auto px-4 py-8 flex items-center">
         {/* logo */}
         <div className="mr-auto md:w-48 flex-shrink-0">
-          <Image width={200} height={100} src={Logo} alt="" />
+          <Link href="/">
+            <Image width={200} height={100} src={Logo} alt="" />
+          </Link>
         </div>
         {/* search */}
         <div className="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
@@ -31,6 +40,8 @@ const Header = () => {
           </select>
           <input
             className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             type="text"
             placeholder="I'm searching for ..."
           />
@@ -43,6 +54,7 @@ const Header = () => {
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
+            onClick={handleSearch}
           >
             <path
               fill="currentColor"
@@ -53,8 +65,8 @@ const Header = () => {
         {/* phone number */}
         <div className="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
           <span className="font-bold md:text-xl">
-            Hello!{" "}
-            <Image 
+            Hello! Sandip
+            <Image
               src="/path/to/user-photo.jpg" // Replace with the actual path to the user's photo
               alt="User Photo"
               width={40} // Adjust size as needed
@@ -137,20 +149,17 @@ const Header = () => {
             Sign Out
           </button>
         </div>
-        
       </div>
       <div className="container mx-auto px-4 flex items-center">
-        {
-            itemList.map((item,index)=>(
-                <Link 
-                  href={`/${item.toLowerCase().replace(/\s/g, '-')}`} 
-                  key={index}
-                  className="text-gray-600 hover:text-blue-500 hover:underline px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out"
-                >
-                    {item}
-                </Link>
-            ))
-        }
+        {itemList.map((item, index) => (
+          <Link
+            href={`/${item.toLowerCase().replace(/\s/g, "-")}`}
+            key={index}
+            className="text-gray-600 hover:text-blue-500 hover:underline px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out"
+          >
+            {item}
+          </Link>
+        ))}
       </div>
       <hr />
     </header>
