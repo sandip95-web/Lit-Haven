@@ -46,7 +46,7 @@ const Header = () => {
             placeholder="I'm searching for ..."
           />
           <svg
-            className="ml-auto h-5 px-4 text-gray-500"
+            className="ml-auto h-5 px-4 text-gray-500 cursor-pointer"
             aria-hidden="true"
             focusable="false"
             data-prefix="far"
