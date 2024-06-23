@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 import { supabase } from "../books";
 
@@ -9,7 +11,7 @@ export const useSupabase = () => {
     let { data, error } = await supabase.from("books").select("*");
     if (data) {
       setBooks(data);
-      console.log(data);
+     
     }
     if (error) {
       console.log(error);
@@ -36,7 +38,7 @@ export const useSupabase = () => {
       );
     if (data) {
       setFilteredBooks(data);
-      console.log(data);
+    
     }
     if (error) {
       console.log(error);
