@@ -1,5 +1,7 @@
 import React from 'react';
 import Rating from './common/Rating';
+import Link from 'next/link';
+import AddToCart from './AddToCart';
 
 
 const SingleBookPage = ({ singleBook }: { singleBook: any[] }) => {
@@ -37,20 +39,7 @@ const SingleBookPage = ({ singleBook }: { singleBook: any[] }) => {
                 {book.description}
               </p>
             </div>
-            <div className=" flex space-x-4">
-              <a
-                href="#"
-                className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded shadow-lg transition-colors duration-300"
-              >
-                Buy Now
-              </a>
-              <a
-                href="#"
-                className="inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded shadow-lg transition-colors duration-300"
-              >
-                Add to Cart
-              </a>
-            </div>
+            <AddToCart book={book}/>
           </div>
         </div>
       ))}

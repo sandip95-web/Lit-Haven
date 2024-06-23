@@ -2,8 +2,11 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Logo from "@/assets/images/logo.png";
+import Profile from '@/assets/images/profile.jpg'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/lib/supabase/hooks/redux";
+import { getCart } from "@/redux/cartSlice";
 
 const Header = () => {
   const itemList = [
@@ -16,6 +19,7 @@ const Header = () => {
 
   const [query, setQuery] = useState<string>("");
   const router = useRouter();
+  const cart = useAppSelector(getCart);
 
   const handleSearch = () => {
     router.push(`/search/${query}`);
@@ -67,7 +71,7 @@ const Header = () => {
           <span className="font-bold md:text-xl">
             Hello! Sandip
             <Image
-              src="/path/to/user-photo.jpg" // Replace with the actual path to the user's photo
+              src={Profile} // Replace with the actual path to the user's photo
               alt="User Photo"
               width={40} // Adjust size as needed
               height={40} // Adjust size as needed
@@ -120,9 +124,9 @@ const Header = () => {
               </a>
             </li>
             <li className="ml-2 lg:ml-4 relative inline-block">
-              <a className="" href="">
+              <Link className="" href="/cart">
                 <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
-                  12
+                  {cart.length}
                 </div>
                 <svg
                   className="h-9 lg:h-10 p-2 text-gray-500 hover:text-blue-500 transition duration-300 ease-in-out"
@@ -139,7 +143,7 @@ const Header = () => {
                     d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"
                   />
                 </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
