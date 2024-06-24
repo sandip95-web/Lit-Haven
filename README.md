@@ -1,5 +1,30 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Tools Used
+-Next js
+-Supabase
+-Stripe
+
+Screenshots:
+
+1) Homepage:
+![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/9ebd23c6-5fb0-4288-b4db-8f68ba51e9be)
+
+![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/7e195c68-9fa2-4bf4-ba52-fdb04ec88ab1)
+
+2) Detail page
+   ![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/20f00b9a-7fb1-4af7-84ec-e73964c8deaf)
+3) Add to cart
+   ![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/4900b8f5-e47d-4f36-b909-ecf677b29c2e)
+4) Checkout page
+   ![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/392c0640-594a-43d4-87b5-af707b33dd14)
+5) Search Page
+   ![image](https://github.com/sandip95-web/Lit-Haven/assets/103570637/091eac1b-a87d-423b-af29-6e6623579996)
+
+
+
+
+
 ## Getting Started
 
 First, run the development server:
