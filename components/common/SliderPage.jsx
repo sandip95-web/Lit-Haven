@@ -12,7 +12,7 @@ const SliderPage = () => {
 
   useEffect(() => {
     getDataFromSupabase();
-  }, []);
+  }, [getDataFromSupabase]);
 
   useEffect(() => {
     if (books) {

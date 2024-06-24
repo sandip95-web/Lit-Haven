@@ -2,6 +2,7 @@ import React from 'react';
 import Rating from './common/Rating';
 import Link from 'next/link';
 import AddToCart from './AddToCart';
+import Image from 'next/image';
 
 
 const SingleBookPage = ({ singleBook }: { singleBook: any[] }) => {
@@ -13,7 +14,7 @@ const SingleBookPage = ({ singleBook }: { singleBook: any[] }) => {
           className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row"
         >
           <div className="md:w-1/2 bg-gray-100">
-            <img
+            <Image
               className="w-full h-full object-contain p-6"
               src={book.bookImage}
               alt={book.title}

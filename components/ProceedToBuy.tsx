@@ -17,7 +17,7 @@ const ProceedToBuy = ({
         Ready to Checkout?
       </h2>
       <p className="text-gray-600 text-center">
-        You're just one step away from completing your purchase. Review your
+        You&apos;re just one step away from completing your purchase. Review your
         order and proceed to checkout to enjoy our premium products.
       </p>
       <div className="w-full">

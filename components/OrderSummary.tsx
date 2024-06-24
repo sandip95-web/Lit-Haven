@@ -2,16 +2,42 @@
 import React from "react";
 import { useAppSelector } from "@/lib/supabase/hooks/redux";
 import { getCart } from "@/redux/cartSlice";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import { supabase } from "@/lib/supabase/books";
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY!);
+
 
 const OrderSummary = () => {
   const cart = useAppSelector(getCart);
+
+  const createStripeSession = async () => {
+    const stripe = await stripePromise;
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const checkoutSessions = await axios.post("/api/checkout-sessions", {
+      items: cart,
+      email: user?.email,
+    });
+
+    const result= await stripe?.redirectToCheckout({
+      sessionId:checkoutSessions.data.id
+    })
+
+    if(result?.error){
+      console.log(result.error.message);
+      
+    }
+  };
 
   const orderSummary = {
     subtotal: cart.reduce(
       (acc: number, item: any) => acc + item.price * item.quantity,
       0
     ),
-    shipping: 5.99, 
+    shipping: 5.99,
     get total() {
       return this.subtotal + this.shipping;
     },
@@ -34,7 +60,7 @@ const OrderSummary = () => {
           <span>${orderSummary.total.toFixed(2)}</span>
         </div>
       </div>
-      <button className="w-full bg-green-600 text-white py-3 mt-6 rounded-lg hover:bg-blue-700 transition duration-300">
+      <button onClick={createStripeSession} className="w-full bg-green-600 text-white py-3 mt-6 rounded-lg hover:bg-blue-700 transition duration-300">
         Place Order
       </button>
     </div>
