@@ -10,7 +10,6 @@ const SliderPage = () => {
     const { books, getDataFromSupabase } = useSupabase();
   const [categories, setCategories] = useState({});
 
-  console.log(books);
   useEffect(() => {
     getDataFromSupabase();
   }, []);

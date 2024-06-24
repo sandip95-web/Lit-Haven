@@ -8,8 +8,7 @@ import { log } from "util";
 const AddToCart = ({ book }: { book: any }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
- 
-  console.log(book);
+
   
 
   return (
