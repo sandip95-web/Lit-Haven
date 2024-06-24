@@ -8,9 +8,10 @@ export const useSupabase = () => {
   const [filteredBooks, setFilteredBooks] = useState<any>([]);
   const [singleBook, setSingledBook] = useState<any>([]);
   const getDataFromSupabase = async () => {
-    let { data, error } = await supabase.from("books").select("*");
+    let { data, error } = await supabase.from("allbooks").select("*");
     if (data) {
       setBooks(data);
+     console.log("All",data);
      
     }
     if (error) {
@@ -19,7 +20,7 @@ export const useSupabase = () => {
   };
 
   const getSingleBook = async(id:any)=>{
-    let { data, error } = await supabase.from("books").select("*").eq('id',id);
+    let { data, error } = await supabase.from("allbooks").select("*").eq('bookIsbn',id);
     if(data){
       setSingledBook(data);
     }
@@ -31,10 +32,10 @@ export const useSupabase = () => {
 
   const getFilterBooks = async (query: string) => {
     let { data, error } = await supabase
-      .from("books")
+      .from("allbooks")
       .select("*")
       .or(
-        `title.ilike.%${query}%,description.ilike.%${query}%,category.ilike.%${query}%`
+        `bookTitle.ilike.%${query}%,bookDescription.ilike.%${query}%,genre.ilike.%${query}%`
       );
     if (data) {
       setFilteredBooks(data);

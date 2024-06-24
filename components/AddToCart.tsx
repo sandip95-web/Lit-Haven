@@ -3,11 +3,13 @@ import { addToCart } from "@/redux/cartSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { log } from "util";
 
 const AddToCart = ({ book }: { book: any }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
  
+  console.log(book);
   
 
   return (

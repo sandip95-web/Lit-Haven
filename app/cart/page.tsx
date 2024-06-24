@@ -19,9 +19,11 @@ const Page = () => {
         <div className="w-3/4 pr-4">
           <BookCart cart={cart} totalPrice={totalPrice} />
         </div>
-        <div className="w-1/4 pl-4">
-          <ProceedToBuy length={cart.length} totalPrice={totalPrice} />
-        </div>
+        {cart && cart.length > 0 ? (
+          <div className="w-1/4 pl-4">
+            <ProceedToBuy length={cart.length} totalPrice={totalPrice} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

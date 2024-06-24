@@ -15,11 +15,11 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const alredyExist = state.cart.find(
-        (item: any) => item.id === action.payload.id
+        (item: any) => item.bookIsbn === action.payload.bookIsbn
       );
       if (alredyExist) {
         state.cart = state.cart.map((item: any) => {
-          return item.id === action.payload.id
+          return item.bookIsbn === action.payload.bookIsbn
             ? { ...item, quantity: item.quantity + 1 }
             : item;
         });
@@ -29,22 +29,25 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.cart = state.cart.filter((item: any) => {
-        return item.id !== action.payload;
+        return item.bookIsbn !== action.payload.bookIsbn;
       });
     },
     incrementQuantity: (state, action) => {
       state.cart = state.cart.map((item: any) => {
-        return item.id === action.payload.id
+        return item.bookIsbn === action.payload.bookIsbn
           ? { ...item, quantity: item.quantity + 1 }
           : item;
       });
     },
     decrementQuantity: (state, action) => {
       state.cart = state.cart.map((item: any) => {
-        return item.id === action.payload.id
+        return item.bookIsbn === action.payload.bookIsbn
           ? { ...item, quantity: item.quantity - 1 }
           : item;
       });
+    },
+    clearCart: (state) => {
+      state.cart = [];
     },
   },
 });
@@ -54,6 +57,7 @@ export const {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  clearCart,
 } = cartSlice.actions;
 
 export const getCart = (state: RootState) => state.cart.cart;
